@@ -50,6 +50,23 @@ python manage.py runserver
 
 Open `http://127.0.0.1:8000/` in your browser.
 
+## Render deployment
+
+Install project dependencies and collect static files during the build:
+
+```bash
+pip install -r requirements.txt
+python manage.py collectstatic --noinput
+```
+
+Use this start command:
+
+```bash
+gunicorn project1.wsgi:application
+```
+
+`DEBUG` is disabled for production. Render automatically provides `RENDER_EXTERNAL_HOSTNAME`; it is added to `ALLOWED_HOSTS`. Add any custom domain in Render as an `ALLOWED_HOSTS` environment variable (comma-separated when using more than one).
+
 ## Main routes
 
 | Route | Purpose |
