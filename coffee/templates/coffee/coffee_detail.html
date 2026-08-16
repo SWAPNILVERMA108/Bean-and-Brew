@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Coffee Detail page  
+{% endblock title %}
+
+{% block content %}
+<section class="mx-auto max-w-5xl px-5 py-12 sm:px-6 sm:py-20"><a href="{% url 'coffee' %}" class="inline-flex items-center text-sm font-semibold text-stone-600 transition hover:text-amber-800">← Back to coffees</a><div class="mt-7 overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm md:grid md:grid-cols-2"><div class="aspect-square bg-amber-50 md:aspect-auto"><img class="h-full w-full object-cover" src="{{ coffee.image.url }}" alt="{{ coffee.name }}"></div><div class="p-7 sm:p-10"><p class="text-sm font-bold uppercase tracking-widest text-amber-700">{{ coffee.get_type_display }}</p><h1 class="mt-3 text-4xl font-bold tracking-tight text-stone-900">{{ coffee.name }}</h1><div class="my-7 h-px bg-stone-200"></div><p class="leading-8 text-stone-600">{{ coffee.description|default:"A thoughtfully selected coffee with its own distinctive character." }}</p><div class="mt-9 flex flex-wrap gap-3"><a href="{% url 'order_create' %}?coffee={{ coffee.pk }}" class="inline-flex rounded-xl bg-amber-700 px-5 py-3 font-semibold text-white transition hover:bg-amber-800">Order this coffee</a><a href="{% url 'coffee_stores' %}" class="inline-flex rounded-xl border border-stone-300 px-5 py-3 font-semibold text-stone-800 transition hover:border-amber-700 hover:text-amber-800">Find nearby</a></div></div></div></section>
+{% endblock content %} 

@@ -1,0 +1,19 @@
+
+{% extends "layout.html" %}
+
+{% block title %}
+Coffee
+{% endblock title %}
+
+{% block content %}
+<section class="mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-20">
+    <div class="flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p class="text-sm font-bold uppercase tracking-widest text-amber-700">Coffee collection</p><h1 class="mt-3 text-4xl font-bold tracking-tight text-stone-900 sm:text-5xl">Find your next favourite.</h1><p class="mt-4 max-w-2xl text-lg text-stone-600">Discover our selection of distinctive coffees, from bright espresso to velvety mocha.</p></div><a href="{% url 'coffee_stores' %}" class="inline-flex shrink-0 items-center justify-center rounded-xl bg-stone-900 px-5 py-3 font-semibold text-white transition hover:bg-amber-800">Find a store &rarr;</a></div>
+    <div class="mt-11 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {% for coffee in coffees %}
+        <article class="group overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-stone-200/70"><div class="aspect-[4/3] overflow-hidden bg-amber-50"><img class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="{{ coffee.image.url }}" alt="{{ coffee.name }}"></div><div class="p-6"><p class="text-xs font-bold uppercase tracking-widest text-amber-700">{{ coffee.get_type_display }}</p><h2 class="mt-2 text-xl font-bold text-stone-900">{{ coffee.name }}</h2><p class="mt-2 line-clamp-2 leading-6 text-stone-600">{{ coffee.description }}</p><a href="{% url 'coffee_detail' coffee.id %}" class="mt-5 inline-flex items-center font-semibold text-stone-900 underline decoration-amber-500 decoration-2 underline-offset-4">View coffee <span class="ml-2">&rarr;</span></a></div></article>
+    {% empty %}
+        <p class="col-span-full rounded-2xl border border-dashed border-stone-300 p-8 text-stone-600">No coffee varieties have been added yet.</p>
+    {% endfor %}
+    </div>
+ </section>
+{% endblock content %} 
